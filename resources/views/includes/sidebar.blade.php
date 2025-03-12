@@ -140,7 +140,26 @@ Developed By: Innovative Solution Pvt. Ltd. (ISPL)   -->
                             </a>
                         </li>
                         @endif
-
+                        <li
+                                    class="nav-item {{ request()->is('fsm/desludging-schedule') ? 'menu-is-opening menu-open' : '' }}">
+                                    <a href="#"
+                                        class="nav-link {{ request()->is('fsm/desludging-schedule') ? 'active subnav' : '' }}">
+                                        <i class="nav-icon fa-regular fa-building"></i>
+                                        <p>
+                                        Schedule Desludging IMS <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                       
+                                            <li class="nav-item">
+                                                <a href="{{ action('Fsm\DesludgingScheduleController@index') }}"
+                                                    class="nav-link {{ request()->is('fsm/desludging-schedule') ? 'active' : '' }}">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Desludging Schedule </p>
+                                                </a>
+                                            </li>
+                                    </ul>
+                                </li>
                         @can('List Containments')
                         <li class="nav-item {{ request()->is('fsm/containments','fsm/containments/*') ? 'menu-is-opening menu-open' : '' }}"><a href="#" class="nav-link {{ request()->is('fsm/containments/*', 'fsm/containments') ? 'active subnav' : '' }}">
 
@@ -588,8 +607,14 @@ Developed By: Innovative Solution Pvt. Ltd. (ISPL)   -->
 
                         </ul>
                     </li>
-
-                </ul>
+                    <li class="nav-item {{ request()->is('auth/*') ? 'menu-is-opening menu-open' : '' }}">
+                                <a href="{{ action('Site\SiteSettingController@index') }}"
+                                    class="nav-link {{ request()->is('site/site-setting') ? 'active subnav' : '' }}">
+                                    <i class="nav-icon fa-solid fa-microscope"></i>
+                                    <p>Site Setting</p>
+                                </a>
+                    </li>
+                    </ul>
             </li>
             @endif
             </ul>

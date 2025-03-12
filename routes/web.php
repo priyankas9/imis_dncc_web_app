@@ -242,7 +242,17 @@ Route::group([
     'middleware' => 'auth',
     'namespace' => 'Fsm'
 ], function () {
+    Route::get('/desludging-schedule/data', 'DesludgingScheduleController@getData');
+    
+    Route::get('/desludging-schedule/export', 'DesludgingScheduleController@export');
+    Route::post('/desludging-schedule/submit-application', 'DesludgingScheduleController@submitApplication');
+    Route::post('/desludging-schedule/disagreeEmptying/{bin}', 'DesludgingScheduleController@disagreeEmptying');
 
+    
+
+    Route::resource('/desludging-schedule', 'DesludgingScheduleController');
+
+     Route::get('/set-emptying-date', 'DesludgingScheduleController@setEmptyingDate')->name('set.emptying.date');
     Route::get('/cwis-setting/data', 'CwisSettingController@getData');
     Route::resource('/cwis-setting', 'CwisSettingController');
 
@@ -384,6 +394,11 @@ Route::group([
     Route::get('application/{id}/application-report', 'ApplicationController@applicationReport')->name('application.report');
     Route::get('/service-provider/{service_provider_id}', 'ApplicationController@getServiceProvider');
     Route::resource('application', 'ApplicationController');
+ /**
+     * Application Routes
+     *
+     */
+    Route::resource('supevisory-assessment', 'SupervisoryAssessmentController');
 
     /**
      * Emptying Routes
@@ -418,6 +433,16 @@ Route::group([
     Route::resource('sludge-collection', 'SludgeCollectionController');
 
 
+});
+Route::group([
+    'name' => 'site',
+    'prefix' => 'site',
+    'middleware' => 'auth',
+    'namespace' => 'Site'
+], function () {
+    Route::resource('/site-setting', 'SiteSettingController');
+
+    Route::get('/site-setting/data', 'SiteSettingController@getData');
 });
 
 /**
